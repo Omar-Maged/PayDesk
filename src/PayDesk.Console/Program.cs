@@ -205,9 +205,11 @@ while (running)
             }
 
         case 0:
-            running = false;
-            Console.WriteLine("Goodbye.");
-            break;
+            {
+                running = false;
+                Console.WriteLine("Goodbye.");
+                break;
+            }
 
         default:
             Console.WriteLine("Invalid option.");
