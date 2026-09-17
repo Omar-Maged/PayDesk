@@ -33,5 +33,12 @@ namespace PayDesk.UnitTests
             Assert.Throws<ArgumentException>(() =>
                 new MaskedCard("411111******1111", ""));
         }
+
+        [Fact]
+        public void Constructor_WithIvalidLength_ThrowsException()
+        {
+            Assert.Throws<ArgumentException>(() => 
+                new MaskedCard("411111******11111", ""));
+        }
     }
 }
