@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="src/PayDesk.Console/PayDesk.Console.csproj" />
+  <Project Path="src/PayDesk.Domain/PayDesk.Domain.csproj" />
+  <Project Path="tests/PayDesk.UnitTests/PayDesk.UnitTests.csproj" />
 </Solution>
