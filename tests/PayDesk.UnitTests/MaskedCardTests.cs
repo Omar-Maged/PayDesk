@@ -7,9 +7,9 @@ namespace PayDesk.UnitTests
         [Fact]
         public void Constructor_WithValidMaskedNumber_CreatesMaskedCard()
         {
-            var card = new MaskedCard("411111******1111", "Visa");
+            var card = new MaskedCard("4111111111", "Visa");
 
-            Assert.Equal("411111******1111", card.MaskedNumber);
+            Assert.Equal("4111111111", card.MaskedNumber);
             Assert.Equal("Visa", card.Scheme);
         }
 

@@ -8,7 +8,8 @@ namespace PayDesk.Domain
     {
         public int Id { get; }
         public string TerminalCode { get; }
-        public int MerchantId { get; }
+        public int MerchantId { get; private set; }
+        public Merchant Merchant { get; private set; } = null!;
         public TerminalChannel Channel { get; }
         public TerminalStatus Status { get; private set; }
 
