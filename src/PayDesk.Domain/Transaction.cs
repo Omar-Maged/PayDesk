@@ -6,14 +6,24 @@ namespace PayDesk.Domain
 {
     public class Transaction
     {
-        public int Id { get; }
-        public string Reference { get; }
-        public int MerchantId { get; }
-        public int TerminalId { get; }
-        public Money Amount { get; }
-        public MaskedCard Card { get; }
+        public int Id { get; private set; }
+        public string Reference { get; private set; }
+        public int MerchantId { get; private set; }
+        public Merchant Merchant { get; private set; } = null!;
+
+        public int TerminalId { get; private set; }
+        public Terminal Terminal { get; private set; } = null!;
+        public Money Amount { get; private set; }
+        public MaskedCard Card { get; private set; }
         public TransactionStatus Status { get; private set; }
-        public DateTime CreatedAtUtc { get; }
+        public DateTime CreatedAtUtc { get; private set; }
+
+        private Transaction()
+        {
+            Reference = null!;
+            Amount = null!;
+            Card = null!;
+        }
 
         public Transaction(int id, string reference, int merchantId, int terminalId, Money amount, MaskedCard card)
         {

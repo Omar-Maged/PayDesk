@@ -6,31 +6,37 @@ namespace PayDesk.Domain
 {
     public class MaskedCard
     {
-        public string MaskedNumber { get; }
+        public string StoredDigits { get; }
         public string Scheme { get; }
 
+        public string MaskedNumber =>
+            StoredDigits[..6] + "******" + StoredDigits[^4..];
 
-
-        public MaskedCard (string maskedNumber, string scheme)
+        public MaskedCard(string storedDigits, string scheme)
         {
-            if (string.IsNullOrWhiteSpace (maskedNumber))
+            if (string.IsNullOrWhiteSpace(storedDigits))
             {
-                throw new ArgumentException("Masked Card Number is required.");
+                throw new ArgumentException("Stored card digits are required.");
             }
-            if (!maskedNumber.Contains('*'))
+
+            if (storedDigits.Length != 10)
             {
-                throw new ArgumentException("A full card number cannot be stored.");
+                throw new ArgumentException(
+                    "Stored card digits must contain exactly 10 digits.");
             }
-            if (!maskedNumber.All(c=> char.IsDigit (c) || c =='*'))
+
+            if (!storedDigits.All(char.IsDigit))
             {
-                throw new ArgumentException("Masked number contains invalid chahracters.");
+                throw new ArgumentException(
+                    "Stored card data must contain digits only.");
             }
+
             if (string.IsNullOrWhiteSpace(scheme))
             {
                 throw new ArgumentException("Card scheme is required.");
             }
 
-            MaskedNumber = maskedNumber;
+            StoredDigits = storedDigits;
             Scheme = scheme;
         }
     }
